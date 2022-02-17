@@ -5,7 +5,7 @@ public class Alakazam extends Pokemon{
     }
 
     @Override
-    public void golpear(Pokemon pokemon) {
+    public void golpear(Pokemon pokemon) throws PokemonException {
         this.usarAtaque().usar(pokemon);
         if(pokemon instanceof Tyranitar)
             pokemon.recibirDanyo(0);

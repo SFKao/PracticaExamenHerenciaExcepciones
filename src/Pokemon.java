@@ -52,7 +52,7 @@ public abstract class Pokemon {
         this.defensa = defensa;
     }
 
-    public abstract void golpear(Pokemon pokemon);
+    public abstract void golpear(Pokemon pokemon) throws PokemonException;
 
     public void recibirDanyo(int danyo){
         if(danyo - defensa > hp)
@@ -61,7 +61,11 @@ public abstract class Pokemon {
             hp -= danyo - defensa;
     }
 
-    public Ataque usarAtaque(){
+    public Ataque usarAtaque() throws PokemonException {
+        if(this.hp == 0)
+            throw new PokemonException("Intentaste usar un ataque sin vida");
+        if(nAtaques == 0)
+            throw new PokemonException("Intentaste atacar sin tener ningun movimiento.");
         return ataques[r.nextInt(nAtaques)];
     }
 }
